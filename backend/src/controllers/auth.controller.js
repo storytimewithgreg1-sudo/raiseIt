@@ -44,7 +44,32 @@ export const signup = async (req,res)=>  {
 }
 
 export const login = async (req,res)=>  {
+    try {
+        const {email, password} = req.body;
+        const user = await User.findOne({email});
 
+        if(!user){
+            return res.status(400).json({message: "Invalid Credentials"})
+        }
+
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+        if(isPasswordCorrect){
+            generateToken(user._id, res);
+            return res.status(200).json(user)
+        }else{
+            return res.status(400).json({message:"invalid credentials"})
+        }
+    
+        
+    
+     
+
+
+    } catch (error) {
+        console.log("Error in login controller", error)
+        res.status(500).json({message: "internal Server Error "})
+    }
 }
 
 export const logout = async (req,res)=>  {
