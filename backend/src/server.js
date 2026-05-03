@@ -9,15 +9,9 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 
-
-
 const app = express();
 
-
-
 app.use(json())
-
-
 
 app.use("api/auth",authRoutes)
 app.use("api/classroom",classroomRoutes)
