@@ -2,7 +2,7 @@ import Classroom from "../models/Classroom.js"
 
 export const getClassrooms = async (req,res) => {
     try {
-        const classrooms = await Clasroom.find()
+        const classrooms = await Classroom.find()
 
         res.status(200).json(classrooms)
     } catch (error) {
