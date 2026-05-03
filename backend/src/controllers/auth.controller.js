@@ -1,5 +1,45 @@
+import User from "../models/User";
+import bcrypt from "bcrypt";
+import { generateToken } from "../lib/utils";
 
 export const signup = async (req,res)=>  {
+
+  try {
+      const {name, email, password} = req.body;
+    if (!name || !email || !password){
+        res.status(400).json({message:"all fields are required"});
+
+    }
+
+    if(password.length < 6){
+        res.status(400).json({message: "Password length should be greater than 6"})
+    }
+
+    const user = await User.findOne({email});
+
+    if (user){
+        res.status(400).json({message:"Email already exists"})
+    }
+
+    const salt = await bcrypt.genSalt(10);
+
+    const hashedPassword = await bcrypt.hash(password,salt);
+
+    const newUser =new User({
+        name,
+        email,
+        password
+    });
+
+    if (newUser){
+        generateToken(newUser._id, res)
+        res.status(200).json(newUser);
+    }
+
+  } catch (error) {
+    console.log("Error in Signup controller," ,error)
+    res.status(500);
+  }
 
 }
 
