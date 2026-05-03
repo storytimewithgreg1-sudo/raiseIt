@@ -33,7 +33,7 @@ export const signup = async (req,res)=>  {
     if (newUser){
         await newUser.save();
         generateToken(newUser._id, res)
-        res.status(200).json(newUser);
+        res.status(201).json(newUser);
     }
 
   } catch (error) {
@@ -46,6 +46,11 @@ export const signup = async (req,res)=>  {
 export const login = async (req,res)=>  {
     try {
         const {email, password} = req.body;
+        
+        if(!email || !password){
+            return res.status(400).json({message: "All Fields Required"})
+        }
+        
         const user = await User.findOne({email});
 
         if(!user){
@@ -74,4 +79,13 @@ export const login = async (req,res)=>  {
 
 export const logout = async (req,res)=>  {
 
+    try {
+        res.cookie("jwt", "", {maxAge:0})
+        res.status(200).json({message: "Successfully logged out"})
+
+    } catch (error) {
+        console.log("Error in logout controller", error);
+        res.status(500).json({message:"Internal Server Error"})
+        
+    }
 }
