@@ -13,11 +13,11 @@ const app = express();
 
 app.use(json())
 
-app.use("api/auth",authRoutes)
-app.use("api/classroom",classroomRoutes)
-app.use("api/auth",suggestionRoutes)
+app.use("/api/auth",authRoutes)
+app.use("/api/classroom",classroomRoutes)
+app.use("/api/suggestions",suggestionRoutes)
 
- app.listen(5000, () => {
+ app.listen(PORT, () => {
     connectDB();
-    console.log("Server is running")
+    console.log("Server is running on Port:", PORT)
  })
