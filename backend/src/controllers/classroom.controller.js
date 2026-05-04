@@ -72,8 +72,8 @@ export const deleteClassroom = async (req,res) => {
         res.status(200).json({message: "Classroom Deleted Successfully"});
         
     } catch (error) {
-        return console.log("Error in deleteClassroom controller", error);
-        res.status(500).json({message:"Internal server error"})
+        console.log("Error in deleteClassroom controller", error);
+        return res.status(500).json({message:"Internal server error"})
     }
 }
 
@@ -89,7 +89,7 @@ export const joinClassroom = async (req,res) => {
              res.status(400).json({message:"Classroom does not exist"})
         );
 
-        if(classroom.code !== code){
+        if(code !== classroom.code){
                 return res.status(400).json({message:"Invalid Classroom Code"})
             }
         

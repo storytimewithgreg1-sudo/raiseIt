@@ -6,9 +6,9 @@ export const getSuggestions = async (req,res) => {
         const userId = req.user._id;
         const classId = req.params.classId;
       
-        const classroom = await Classroom.findById(classId ).populate("suggestions");
+        const suggestions = await Suggestion.find({classroom: classId}).sort({isPinned: -1, votes: -1});
 
-        res.json(classroom.suggestions);
+        res.json(suggestions);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
