@@ -43,7 +43,7 @@ export const createClassroom = async (req,res) => {
 
 export const getClassroomById = async (req,res) => {
     try {
-        const classRoomId = req.params.id;
+        const classRoomId = req.params.classId;
        
 
         const classroom = await Classroom.findOne({_id : classRoomId});
@@ -61,7 +61,7 @@ export const getClassroomById = async (req,res) => {
 
 export const deleteClassroom = async (req,res) => {
     try {
-        const classroomId = req.params.id;
+        const classroomId = req.params.classId;
 
         const classroom = await Classroom.findByIdAndDelete(classroomId);
 
@@ -80,7 +80,7 @@ export const deleteClassroom = async (req,res) => {
 export const joinClassroom = async (req,res) => {
 
     try {
-        const classId = req.params.id;
+        const classId = req.params.classId;
         const { code } = req.body;
 
 

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Classroom from "./Classroom";
+import Classroom from "./Classroom.js";
 
 const suggestionSchema = mongoose.Schema({
     title :{

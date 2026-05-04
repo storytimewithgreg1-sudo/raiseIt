@@ -55,3 +55,24 @@ export const isCreator = async (req,res,next) =>{
         return res.status(500).json({message:"Internal Server Error"})
     }
 }
+
+export const isMember = async (req,res,next) =>{
+
+    try {
+        
+        const userId = req.user._id;
+        const classId = req.params.classId;
+
+        const classroom = await Classroom.findById(classId);
+
+        if(!classroom.members.includes(userId)){
+            return res.status(400).json({message: "Unauthorised request"});
+        }
+        next();
+
+        
+    } catch (error) {
+        console.log("Error in isMember," ,error);
+        return res.status(500).json({message:"Internal Server Error"})
+    }
+}
