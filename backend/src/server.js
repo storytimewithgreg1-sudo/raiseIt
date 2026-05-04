@@ -1,7 +1,6 @@
 import express, { json } from "express";
 import authRoutes from "./routes/auth.routes.js";
 import classroomRoutes from "./routes/classroom.routes.js";
-import suggestionRoutes from "./routes/suggestion.route.js";
 import connectDB from "./lib/db.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser"
@@ -17,7 +16,7 @@ app.use(json())
 
 app.use("/api/auth",authRoutes)
 app.use("/api/classroom",classroomRoutes)
-app.use("/api/suggestions",suggestionRoutes)
+
 
  app.listen(PORT, () => {
     connectDB();

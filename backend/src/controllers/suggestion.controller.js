@@ -30,3 +30,11 @@ export const deleteSuggestion = async (req,res) => {
         
     }
 }
+
+export const voteOnSuggestion = async (req,res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
