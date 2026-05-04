@@ -29,7 +29,7 @@ export const createSuggestion = async (req,res) => {
         const newSuggestion = new Suggestion({
             title,
             content,
-            createdBy: userId,
+            author: userId,
             classroom: classId
         });
 
@@ -47,19 +47,23 @@ export const createSuggestion = async (req,res) => {
     }
 }
 
-export const getSuggestionById = async (req,res) => {
-    try {
-        
-    } catch (error) {
-        
-    }
-}
+
 
 export const deleteSuggestion = async (req,res) => {
     try {
         
-    } catch (error) {
+        const suggestionId = req.params.suggestionId;
+        await Suggestion.findByIdAndDelete(suggestionId);
+
+        const classId = req.params.classId;
+        const updatedSuggestions = await Suggestion.find({classroom: classId});
+
+        res.status(200).json(updatedSuggestions);
+    
         
+    } catch (error) {
+        console.log("Error in deleteSuggestion controller", error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 }
 

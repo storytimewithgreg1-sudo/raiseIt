@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken"
 import User from "../models/User.js";
 import Classroom from "../models/Classroom.js";
 import { request } from "express";
+import Suggestion from "../models/Suggestion.js";
 
 export const protectRoutes = async (req,res,next) => {
 
@@ -73,6 +74,24 @@ export const isMember = async (req,res,next) =>{
         
     } catch (error) {
         console.log("Error in isMember," ,error);
+        return res.status(500).json({message:"Internal Server Error"})
+    }
+}
+
+export const isAuthor = async (req,res,next) => {
+    try {
+        const userId = req.user._id;
+        const suggestionId = req.params.suggestionId;
+
+        const isAuthor = await Suggestion.findOne({author: userId, _id: suggestionId});
+
+        if(!isAuthor){
+            return res.status(400).json({message: "Unauthorised request"});
+        }
+        next();
+
+    } catch (error) {
+        console.log("Error in isAuthor middleware")
         return res.status(500).json({message:"Internal Server Error"})
     }
 }
