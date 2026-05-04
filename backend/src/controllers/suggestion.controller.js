@@ -69,8 +69,21 @@ export const deleteSuggestion = async (req,res) => {
 
 export const voteOnSuggestion = async (req,res) => {
     try {
+        const userId = req.user._id;
+        const suggestionId = req.params.suggestionId;
+        const suggestion = await Suggestion.findById(suggestionId);
+
+        if (suggestion.votes.includes(userId)){
+            return res.status(400).json({message: "You have already voted on this suggestion"})
+        }else{
+            suggestion.votes.push(userId);
+            await suggestion.save();
+            res.status(200).json({voteCount: suggestion.votes.length});
+        }
+
         
     } catch (error) {
-        
+        console.log("Error in voteOnSuggestion controller", error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 }
