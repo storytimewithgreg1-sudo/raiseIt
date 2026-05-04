@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken"
 import User from "../models/User.js";
+import Classroom from "../models/Classroom.js";
+import { request } from "express";
 
 export const protectRoutes = async (req,res,next) => {
 
@@ -28,8 +30,28 @@ export const protectRoutes = async (req,res,next) => {
         
     } catch (error) {
         console.log("Error in protect route," ,error);
-        res.status(500).json({message:"Internal Server Error"})
+        return res.status(500).json({message:"Internal Server Error"})
     }
 
 
+}
+
+export const isCreator = async (req,res,next) =>{
+
+    try {
+        
+        const userId = req.user._id;
+
+        const isCreator = await Classroom.findOne({createdBy:userId});
+
+        if(!isCreator){
+        return res.status(400).json({message: "Unauthorised request"});}
+
+        req.isCreator = isCreator;
+        next();
+   
+    } catch (error) {
+        console.log("Error in isCreator," ,error);
+        return res.status(500).json({message:"Internal Server Error"})
+    }
 }

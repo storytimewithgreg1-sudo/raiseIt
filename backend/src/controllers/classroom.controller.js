@@ -7,7 +7,7 @@ export const getClassrooms = async (req,res) => {
         res.status(200).json(classrooms)
     } catch (error) {
         console.log("Error in getclassRooms controller", error);
-        res.status(500).json({message:"Internal server error"})
+        return res.status(500).json({message:"Internal server error"})
         
     }
 }
@@ -37,7 +37,7 @@ export const createClassroom = async (req,res) => {
 
     } catch (error) {
         console.log("Error in createClassroom controller", error);
-        res.status(500).json({message:"Internal server error"})
+        return res.status(500).json({message:"Internal server error"})
     }
 }
 
@@ -55,15 +55,24 @@ export const getClassroomById = async (req,res) => {
         res.status(200).json(classroom);
     } catch (error) {
          console.log("Error in getClassroomById controller", error);
-        res.status(500).json({message:"Internal server error"})
+        return res.status(500).json({message:"Internal server error"})
     }
 }
 
 export const deleteClassroom = async (req,res) => {
     try {
         const classroomId = req.params.id;
+
+        const classroom = await Classroom.findByIdAndDelete(classroomId);
+
+        if(!classroom){
+            return res.status(400).json({message:"Classroom does not exist"})
+        }
+
+        res.status(200).json({message: "Classroom Deleted Successfully"});
         
     } catch (error) {
-        
+        return console.log("Error in deleteClassroom controller", error);
+        res.status(500).json({message:"Internal server error"})
     }
 }
