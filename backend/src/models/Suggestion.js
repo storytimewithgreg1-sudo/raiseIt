@@ -21,6 +21,11 @@ const suggestionSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
+    
+    isPinned:{
+        type: Boolean,
+        default: false
+    },
 
     votes: [{
         type: mongoose.Schema.Types.ObjectId,

@@ -74,7 +74,9 @@ export const voteOnSuggestion = async (req,res) => {
         const suggestion = await Suggestion.findById(suggestionId);
 
         if (suggestion.votes.includes(userId)){
-            return res.status(400).json({message: "You have already voted on this suggestion"})
+            suggestion.votes.pull(userId);
+            await suggestion.save();
+            res.status(200).json({voteCount: suggestion.votes.length});
         }else{
             suggestion.votes.push(userId);
             await suggestion.save();
@@ -85,5 +87,23 @@ export const voteOnSuggestion = async (req,res) => {
     } catch (error) {
         console.log("Error in voteOnSuggestion controller", error);
         res.status(500).json({ message: "Internal Server Error" });
+    }
+}
+
+export const pinSuggestion = async (req,res) => {
+    try {
+         const suggestionId = req.params.suggestionId;
+
+         const suggestion = await Suggestion.findByIdAndUpdate(suggestionId,{isPinned:true},{new:true});
+
+         if(!suggestion){
+            return res.status(400).json({message:"Suggestion does not exist"})
+         }
+
+         res.status(200).json(suggestion);
+
+    } catch (error) {
+        console.log("Error in pinSuggestion controller", error);
+        return res.status(500).json({message:"Internal server error"})
     }
 }
