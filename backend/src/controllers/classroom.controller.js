@@ -76,3 +76,33 @@ export const deleteClassroom = async (req,res) => {
         res.status(500).json({message:"Internal server error"})
     }
 }
+
+export const joinClassroom = async (req,res) => {
+
+    try {
+        const classId = req.params.id;
+        const { code } = req.body;
+
+
+        const classroom = await Classroom.findOne({_id : classId});
+        if(!classroom)(
+             res.status(400).json({message:"Classroom does not exist"})
+        );
+
+        if(classroom.code !== code){
+                return res.status(400).json({message:"Invalid Classroom Code"})
+            }
+        
+        if(classroom.members.includes(req.user._id)){
+            return res.status(400).json({message:"User already a member of the classroom"})
+        }
+
+        classroom.members.push(req.user._id);
+        await classroom.save();
+
+        res.status(200).json({message:`User joined the ${classroom.name} successfully`, members:classroom.members});
+    } catch (error) {
+        console.log("Error in joinClassroom controller", error);
+        return res.status(500).json({message:"Internal server error"})
+    }
+}
