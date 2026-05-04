@@ -43,14 +43,25 @@ export const createClassroom = async (req,res) => {
 
 export const getClassroomById = async (req,res) => {
     try {
-        
+        const classRoomId = req.params.id;
+       
+
+        const classroom = await Classroom.findOne({_id : classRoomId});
+
+        if(!classroom){
+            return res.status(400).json({message:"Classroom does not exist"})
+        }
+
+        res.status(200).json(classroom);
     } catch (error) {
-        
+         console.log("Error in getClassroomById controller", error);
+        res.status(500).json({message:"Internal server error"})
     }
 }
 
 export const deleteClassroom = async (req,res) => {
     try {
+        const classroomId = req.params.id;
         
     } catch (error) {
         
