@@ -94,7 +94,7 @@ export const pinSuggestion = async (req,res) => {
     try {
          const suggestionId = req.params.suggestionId;
 
-         const suggestion = await Suggestion.findByIdAndUpdate(suggestionId,{isPinned:true},{new:true});
+         const suggestion = await Suggestion.findByIdAndUpdate(suggestionId,{isPinned:true, expiresAt: null},{new:true});
 
          if(!suggestion){
             return res.status(400).json({message:"Suggestion does not exist"})

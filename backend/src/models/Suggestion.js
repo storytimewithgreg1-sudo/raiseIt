@@ -27,6 +27,12 @@ const suggestionSchema = mongoose.Schema({
         default: false
     },
 
+    expiresAt: {
+        type: Date,
+        default: () => new Date(+new Date() + 7*24*60*60*1000),
+         index: { expires: 0 }
+    },
+
     votes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
