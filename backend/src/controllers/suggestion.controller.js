@@ -94,11 +94,22 @@ export const pinSuggestion = async (req,res) => {
     try {
          const suggestionId = req.params.suggestionId;
 
-         const suggestion = await Suggestion.findByIdAndUpdate(suggestionId,{isPinned:true, expiresAt: null},{new:true});
-
-         if(!suggestion){
+         const suggestion = await Suggestion.findById(suggestionId);
+          if(!suggestion){
             return res.status(400).json({message:"Suggestion does not exist"})
          }
+
+         suggestion.isPinned = !suggestion.isPinned;
+
+         if(suggestion.isPinned){
+            suggestion.expiresAt = null;
+         }else{
+            suggestion.expiresAt = Date.now() + 7*24*60*60*1000;
+         }
+
+         await suggestion.save();
+
+        
 
          res.status(200).json(suggestion);
 
