@@ -17,7 +17,7 @@ export const signup = async (req,res)=>  {
 
     const user = await User.findOne({email});
 
-    if (user) return res.status(400).json({message:"Email already exists"});
+    if (user) return res.status(400).json({message:"invalid Credentials"});
     
 
     const salt = await bcrypt.genSalt(10);
@@ -30,15 +30,14 @@ export const signup = async (req,res)=>  {
         password: hashedPassword
     });
 
-    if (newUser){
-        await newUser.save();
-        generateToken(newUser._id, res)
-        res.status(201).json(newUser);
-    }
+    await newUser.save();
+    generateToken(newUser._id, res)
+    res.status(201).json({name: newUser.name, email: newUser.email, _id: newUser._id});
+    
 
   } catch (error) {
     console.log("Error in Signup controller," ,error)
-    res.status(500);
+    res.status(500).json({message: "Internal Server Error"});
   }
 
 }
@@ -61,7 +60,7 @@ export const login = async (req,res)=>  {
 
         if(isPasswordCorrect){
             generateToken(user._id, res);
-            return res.status(200).json(user)
+            return res.status(200).json({name: user.name, email: user.email, _id: user._id});
         }else{
             return res.status(400).json({message:"invalid credentials"})
         }

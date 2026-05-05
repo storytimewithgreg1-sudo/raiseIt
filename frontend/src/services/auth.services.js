@@ -1,7 +1,7 @@
 import axiosInstance from "../utils/axios"
 
 
-export const login = async (data) => {
+export const loginService = async (data) => {
     try {
         const res = axiosInstance.post("auth/login", data);
         return res.data;
@@ -14,7 +14,7 @@ export const login = async (data) => {
 
 }
 
-export const register = async (data) => {
+export const signupService = async (data) => {
     try {
          await axiosInstance.post("auth/signup", data);
          return { success: true };
@@ -24,7 +24,7 @@ export const register = async (data) => {
     }
 }
 
-export const logout = async () => {
+export const logoutService = async () => {
     try {
         await axiosInstance.post("auth/logout");
         return { success: true };
