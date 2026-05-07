@@ -21,8 +21,8 @@ const useClassroomStore = create((set) => ({
             toast.error("Unable to fetch classrooms, try again");
             console.log("Unable to fetch classrooms, try again", error);
 
-        } finally{
-            set({ isLoading: false})
+        } finally {
+            set({ isLoading: false })
         }
     },
 
