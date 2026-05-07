@@ -1,10 +1,25 @@
 import { useState } from "react";
 import {UserRound} from "lucide-react";
+import { Link } from "react-router";
+import toast from "react-hot-toast";
+import useAuthStore from "../store/auth.store.js";
 
 const LoginPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, isLoading } = useAuthStore();
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); 
+
+    if (!email || !password) {
+      toast.error("Please fill in all fields");
+     
+      return; }
+
+     await login({ email, password });
+    }
 
 
   return (
@@ -16,10 +31,10 @@ const LoginPage = () => {
 
             <div className=" text-blue-950 flex flex-col items-center gap-4">
                 <UserRound strokeWidth={1} size={70} className="bg-blue-300 rounded-full"/>
-              <h1 className="font-medium text-2xl text-blue-950">Welcome Back</h1>
+              <h1 className="font-medium text-2xl md:text-3xl text-blue-950">Welcome Back</h1>
             </div>
 
-              <form className=" w-full max-w-md">
+              <form onSubmit={handleLogin} className=" w-full max-w-md">
                
 
                 <div className="form-control flex flex-col gap-2 mb-4">
@@ -53,13 +68,16 @@ const LoginPage = () => {
                 </div>
 
                 <div className="card-actions justify-center mb-3">
-                  <button className="btn btn-primary w-full bg-blue-600/90 ">
-                    Login
+                  <button type="submit" className="btn btn-primary w-full bg-blue-600/90 " disabled={isLoading}>
+                    {isLoading ? "Logging in..." : "Login"}
                   </button>
 
                 </div>
 
-                <span className="mt-3 text-blue-950/80"> Don't have an account? </span>
+                <span className="mt-3 text-blue-950/80">
+                   Don't have an account? 
+                   <Link to="/signup" > Signup</Link>
+                   </span>
 
                 
 
