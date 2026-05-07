@@ -1,8 +1,9 @@
 import { useState } from "react";
 import {UserRound} from "lucide-react";
 
-const LoginPage = () => {
+const SignupPage = () => {
 
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,7 +21,19 @@ const LoginPage = () => {
             </div>
 
               <form className=" w-full max-w-md">
-               
+                <div className="form-control flex flex-col gap-2 mb-4">
+                  
+                  <label className="text-lg text-blue-950/80" >
+                  
+                    <span>Name</span>
+                  </label>
+                  
+                  <input type="text"
+                    value={name}
+                    className="input input-bordered border-blue-800/20 bg-transparent w-full"
+                    placeholder="Please Enter Your Fullname"
+                    onChange={(e) => setName(e.target.value)} />
+                </div>
 
                 <div className="form-control flex flex-col gap-2 mb-4">
                   
@@ -76,4 +89,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default SignupPage
