@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserRound } from "lucide-react";
 import { Link } from "react-router";
 import toast from "react-hot-toast";
@@ -9,7 +9,7 @@ const SignupPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { signup, isLoading } = useAuthStore();
+    const { signup, isLoading,checkAuth} = useAuthStore();
 
     const handleRegistration = async (e) => {
         e.preventDefault();
@@ -31,6 +31,8 @@ const SignupPage = () => {
         }
         
     };
+
+    useEffect(() => {checkAuth(), []  })
 
 
     return (
