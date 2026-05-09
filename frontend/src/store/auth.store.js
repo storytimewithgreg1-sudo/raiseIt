@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 
 
 
+
 const useAuthStore = create((set) => ({
     isLoading: false,
     authUser: null,
@@ -18,6 +19,7 @@ const useAuthStore = create((set) => ({
             const res = await loginService(data);
 
             toast.success(`Welcome Back, ${res.data.name}`);
+            set({ authUser: res.data })
             console.log("response:", res.data)
 
 
