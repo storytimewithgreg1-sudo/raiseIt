@@ -4,9 +4,15 @@ import useAuthStore from "./store/auth.store.js";
 import ClassroomsPage from "./pages/ClassroomsPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 
 const App = () => {
-  const {authUser} = useAuthStore();
+  const {authUser, checkAuth} = useAuthStore();
+  useEffect(() => {checkAuth()}, [])
+
+  console.log(authUser)
+
+
 
   return (
     <div>
@@ -21,7 +27,7 @@ const App = () => {
 
         /* Protected Routes */
 
-        <Route path="/" element={ authUser ? ClassroomsPage : <Navigate to="/login"/>}/>
+        <Route path="/" element={ authUser ? <ClassroomsPage/> : <Navigate to="/login"/>}/>
       </Routes>
     </div>
   )

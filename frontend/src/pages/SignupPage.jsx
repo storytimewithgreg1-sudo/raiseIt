@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { UserRound } from "lucide-react";
 import { Link } from "react-router";
 import toast from "react-hot-toast";
@@ -9,7 +9,7 @@ const SignupPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { signup, isLoading,checkAuth} = useAuthStore();
+    const { signup, isLoading} = useAuthStore();
 
     const handleRegistration = async (e) => {
         e.preventDefault();
@@ -32,11 +32,10 @@ const SignupPage = () => {
         
     };
 
-    useEffect(() => {checkAuth(), []  })
-
+  
 
     return (
-        <div className="min-h-screen bg-slate-200">
+        <div className="min-h-screen bg-linear-to-r from-cyan-300/40 to-purple-200/40">
             <div className=" flex items-center justify-center mx-auto  h-screen container px-4 py-8">
                 <div className="shadow-lg  px-4 py-8 max-w-3xl w-full  mx-auto card bg-blue-200">
                     <div className="card-body">
