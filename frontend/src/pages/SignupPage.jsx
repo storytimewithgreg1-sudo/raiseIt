@@ -35,7 +35,7 @@ const SignupPage = () => {
   
 
     return (
-        <div className="min-h-screen bg-linear-to-r from-cyan-300/40 to-purple-200/40">
+       <div className="min-h-screen w-full items-center px-5  [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
             <div className=" flex items-center justify-center mx-auto  h-screen container px-4 py-8">
                 <div className="shadow-lg  px-4 py-8 max-w-3xl w-full  mx-auto card bg-blue-200">
                     <div className="card-body">
