@@ -15,9 +15,10 @@ export const getClassrooms = async (req,res) => {
 export const createClassroom = async (req,res) => {
     try {
         
-        const {name, code} = req.body;
-
-        if (!name || !code){
+        const {name, code, description} = req.body;
+        console.log(req.body)
+        if (!name || !code || !description){
+            
             return res.status(400).json({message:"All Fields Are Required"})
         }
         const userId = req.user._id;
@@ -25,6 +26,7 @@ export const createClassroom = async (req,res) => {
         const newClassroom = new Classroom({
             name,
             code,
+            description,
             createdBy: userId,
             members: userId
         });
