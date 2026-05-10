@@ -1,11 +1,13 @@
 import { X } from "lucide-react";
-import { useState } from "react";
+import {  useState } from "react";
 import toast from "react-hot-toast";
 import classroomAuthStore from "../store/classroom.store.js";
+import { useNavigate } from "react-router";
 
 const JoinModal = ({classId, setToggleModal}) => {
     const [code, setCode] = useState("");
     const { joinClassroom } = classroomAuthStore();
+    const navigate = useNavigate();
 
     const handleJoinClassroom = async () => {
         
@@ -18,6 +20,7 @@ const JoinModal = ({classId, setToggleModal}) => {
         
         if (success){
             setToggleModal(false);
+            navigate(`/${classId}`);
         }
     }
   
