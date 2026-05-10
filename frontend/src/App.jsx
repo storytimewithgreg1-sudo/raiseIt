@@ -6,6 +6,7 @@ import SignupPage from "./pages/SignupPage.jsx";
 import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import CreateClassroomPage from "./pages/CreateClassroomPage.jsx";
+import ClassroomPage from "./pages/ClassroomPage.jsx";
 
 const App = () => {
   const {authUser, checkAuth} = useAuthStore();
@@ -30,6 +31,7 @@ const App = () => {
 
         <Route path="/" element={ authUser ? <ClassroomsPage/> : <Navigate to="/login"/>}/>
         <Route path="/create" element={ authUser ? <CreateClassroomPage/> : <Navigate to="/login"/>}/>
+        <Route path="/:classid" element={ authUser ? <ClassroomPage/> : <Navigate to="/login"/>}/>
       </Routes>
     </div>
   )

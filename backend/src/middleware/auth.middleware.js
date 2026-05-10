@@ -41,7 +41,7 @@ export const isCreator = async (req,res,next) =>{
 
     try {
         
-        const userId = req.user._id;
+        const userId = req.user._id.toString();
 
         const isCreator = await Classroom.findOne({createdBy:userId, _id: req.params.classId});
 

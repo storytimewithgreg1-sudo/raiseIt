@@ -1,6 +1,7 @@
 import { create } from "zustand";
-import { createClassroomService, deleteClassroomService, getClassroomByIdService, getClassroomsService, joinClassroomService } from "../services/classroom.services.js";
+import { createClassroomService, deleteClassroomService, getClassroomByIdService, getClassroomsService, joinClassroomService, enterClassroomService } from "../services/classroom.services.js";
 import toast from "react-hot-toast";
+
 
 const useClassroomStore = create((set) => ({
     classrooms: [],
@@ -18,9 +19,9 @@ const useClassroomStore = create((set) => ({
             set({ classrooms });
 
         } catch (error) {
-            toast.error("Unable to fetch classrooms, try again");
-            console.log("Unable to fetch classrooms, try again", error);
-
+           const errorMessage = error.response?.data?.message || "Delete failed. Please check your details and try again.";
+            toast.error(errorMessage);
+           console.log(errorMessage)
         } finally {
             set({ isLoading: false })
         }
@@ -34,8 +35,9 @@ const useClassroomStore = create((set) => ({
             set((state) => ({ classrooms: [...state.classrooms, newClassroom] }));
             toast.success("Classroom created successfully");
         } catch (error) {
-            toast.error("Unable to create classroom, try again");
-            console.log("Unable to create classroom, try again", error);
+            const errorMessage = error.response?.data?.message || "Create failed. Please check your details and try again.";
+            toast.error(errorMessage);
+            console.log(errorMessage);
         } finally {
             set({ isLoading: false });
         }
@@ -48,8 +50,9 @@ const useClassroomStore = create((set) => ({
             const classroom = await getClassroomByIdService(classId);
             set({ currentClassroom: classroom });
         } catch (error) {
-            toast.error("Unable to fetch classroom, try again");
-            console.log("Unable to fetch classroom, try again", error);
+            const errorMessage = error.response?.data?.message || "Fetch failed. Please check your details and try again.";
+            toast.error(errorMessage);
+            console.log(errorMessage);
         } finally {
             set({ isLoading: false });
         }
@@ -64,8 +67,9 @@ const useClassroomStore = create((set) => ({
             toast.success("Classroom deleted successfully");
 
         } catch (error) {
-            toast.error("Unable to delete classroom, try again");
-            console.log("Unable to delete classroom, try again", error);
+            const errorMessage = error.response?.data?.message || "Delete failed. Please check your details and try again.";
+            toast.error(errorMessage);
+            console.log(errorMessage);
         } finally {
             set({ isLoading: false });
         }
@@ -78,14 +82,35 @@ const useClassroomStore = create((set) => ({
             await joinClassroomService(classId, code);
             toast.success("Joined classroom successfully");
         } catch (error) {
-            toast.error("Unable to join classroom, try again");
-            console.log("Unable to join classroom, try again", error);
+            const errorMessage = error.response?.data?.message || "Join failed. Please check your details and try again.";
+            toast.error(errorMessage);
+           console.log(errorMessage)
         } finally {
             set({ isLoading: false });
         }
     },
 
+    enterClassroom: async (classId) => {
+        set({ isLoading: true });
 
-}))
+        try {
+            const res = await enterClassroomService(classId);
+
+            toast.success(res.message);
+            return true;
+            
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || "Enter failed. Please check your details and try again.";
+            toast.error(errorMessage);
+            console.log(errorMessage);
+            return false;   
+        } finally {
+            set({ isLoading: false });
+        }
+    }
+}
+
+
+))
 
 export default useClassroomStore;
