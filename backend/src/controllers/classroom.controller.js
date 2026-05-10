@@ -3,8 +3,9 @@ import User from "../models/User.js";
 
 export const getClassrooms = async (req,res) => {
     try {
-        const classrooms = await Classroom.find()
-
+        const classrooms = await Classroom.find().populate({path : "suggestions",
+                                                            options : {sort: {isPinned : -1, votes : -1}}
+        })
         res.status(200).json(classrooms)
     } catch (error) {
         console.log("Error in getclassRooms controller", error);
