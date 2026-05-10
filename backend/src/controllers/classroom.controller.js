@@ -3,10 +3,20 @@ import User from "../models/User.js";
 
 export const getClassrooms = async (req,res) => {
     try {
-        const classrooms = await Classroom.find().populate({path : "suggestions",
-                                                            options : {sort: {isPinned : -1, votes : -1}}
+        const classrooms = await Classroom.find().populate("suggestions")
+
+        const sorted = classrooms.map((classroom) => {
+            const obj = classroom.toObject();
+            obj.suggestions.sort((a,b) => {
+               
+                
+                if(a.isPinned !== b.isPinned) return b.isPinned - a.isPinned
+
+                return b.votes.length - a.votes.length;
+            })
+            return obj
         })
-        res.status(200).json(classrooms)
+        res.status(200).json(sorted)
     } catch (error) {
         console.log("Error in getclassRooms controller", error);
         return res.status(500).json({message:"Internal server error"})
