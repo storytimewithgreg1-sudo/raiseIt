@@ -5,7 +5,7 @@ import {Link} from "react-router";
 
 const ClassroomsPage = () => {
 
-  const { classrooms, isLoading, fetchClassrooms } = classroomStore();
+  const { classrooms, isFetching, fetchClassrooms } = classroomStore();
   useEffect(() => { fetchClassrooms() }, [])
 
   return (
@@ -22,7 +22,7 @@ const ClassroomsPage = () => {
 
 
         <div className="flex flex-col items-center justify-center">
-          {!isLoading && classrooms.length === 0 && (
+          {!isFetching && classrooms.length === 0 && (
             <p>No classrooms found.</p>
           )}
 

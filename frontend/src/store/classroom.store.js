@@ -6,29 +6,37 @@ import toast from "react-hot-toast";
 const useClassroomStore = create((set) => ({
     classrooms: [],
     currentClassroom: null,
+    isFetching: false,
     isLoading: false,
+    isDeleting: false,
+    deleteId : null,
+
 
     setClassrooms: (classrooms) => set({ classrooms }),
     setCurrentClassroom: (classroom) => set({ currentClassroom: classroom }),
+    setisFetching: (loading) => set({ isFetching: loading }),
     setIsLoading: (loading) => set({ isLoading: loading }),
+    setDeleteId: (id) => set({ deleteId: id }),
+    setIsDeleting: (loading) => set({ isDeleting: loading }),
 
     fetchClassrooms: async () => {
-        set({ isLoading: true });
+        set({ isFetching: true });
         try {
             const classrooms = await getClassroomsService();
             set({ classrooms });
+            console.log("fetched classrooms", classrooms)
 
         } catch (error) {
-           const errorMessage = error.response?.data?.message || "Delete failed. Please check your details and try again.";
+           const errorMessage = error.response?.data?.message || "Fetch Classrooms failed. Please check your details and try again.";
             toast.error(errorMessage);
            console.log(errorMessage)
         } finally {
-            set({ isLoading: false })
+            set({ isFetching: false })
         }
     },
 
     createClassroom: async (data) => {
-        set({ isLoading: true });
+        set({ isFetching: true });
 
         try {
             const newClassroom = await createClassroomService(data);
@@ -39,12 +47,12 @@ const useClassroomStore = create((set) => ({
             toast.error(errorMessage);
             console.log(errorMessage);
         } finally {
-            set({ isLoading: false });
+            set({ isFetching: false });
         }
     },
 
     getClassroomById: async (classId) => {
-        set({ isLoading: true });
+        set({ isFetching: true });
 
         try {
             const classroom = await getClassroomByIdService(classId);
@@ -54,12 +62,12 @@ const useClassroomStore = create((set) => ({
             toast.error(errorMessage);
             console.log(errorMessage);
         } finally {
-            set({ isLoading: false });
+            set({ isFetching: false });
         }
     },
 
     deleteClassroom: async (classId) => {
-        set({ isLoading: true });
+        set({ isDeleting: true });
 
         try {
             await deleteClassroomService(classId);
@@ -71,7 +79,7 @@ const useClassroomStore = create((set) => ({
             toast.error(errorMessage);
             console.log(errorMessage);
         } finally {
-            set({ isLoading: false });
+            set({ isDeleting: false });
         }
     },
 
@@ -81,10 +89,12 @@ const useClassroomStore = create((set) => ({
         try {
             await joinClassroomService(classId, code);
             toast.success("Joined classroom successfully");
+            return true;
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Join failed. Please check your details and try again.";
             toast.error(errorMessage);
            console.log(errorMessage)
+            return false;
         } finally {
             set({ isLoading: false });
         }

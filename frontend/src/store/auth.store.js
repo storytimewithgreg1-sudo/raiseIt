@@ -6,14 +6,14 @@ import toast from 'react-hot-toast';
 
 
 const useAuthStore = create((set) => ({
-    isLoading: false,
+    isFetching: false,
     authUser: null,
 
     setAuthUser: (user) => set({ authUser: user }),
-    setIsLoading: (loading) => set({ isLoading: loading }),
+    setisFetching: (loading) => set({ isFetching: loading }),
 
     login: async (data) => {
-        set({ isLoading: true });
+        set({ isFetching: true });
 
         try {
             const res = await loginService(data);
@@ -28,12 +28,12 @@ const useAuthStore = create((set) => ({
             toast.error(errorMessage);
             console.log(errorMessage)
         } finally {
-            set({ isLoading: false });
+            set({ isFetching: false });
         }
     },
 
     signup: async (data) => {
-        set({ isLoading: true });
+        set({ isFetching: true });
         try {
             console.log("Store recieved", data)
             const res = await signupService(data);
@@ -45,12 +45,12 @@ const useAuthStore = create((set) => ({
             toast.error(errorMessage);
             console.log(errorMessage)
         } finally {
-            set({ isLoading: false });
+            set({ isFetching: false });
         }
     },
 
     logout: async () => {
-        set({ isLoading: true });
+        set({ isFetching: true });
         try {
             await logoutService();
             set({ authUser: null })
@@ -59,13 +59,13 @@ const useAuthStore = create((set) => ({
             toast.error(errorMessage);
             console.log("Error logging out", error)
         } finally {
-            set({ isLoading: false });
+            set({ isFetching: false });
         }
 
     },
 
     checkAuth: async () => {
-        set({ isLoading: true });
+        set({ isFetching: true });
         try {
             const res = await checkAuthService();
             set({ authUser: res.data })
@@ -75,7 +75,7 @@ const useAuthStore = create((set) => ({
 
 
         } finally {
-            set({ isLoading: false })
+            set({ isFetching: false })
 
         }
     }

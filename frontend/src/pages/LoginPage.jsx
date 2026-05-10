@@ -8,7 +8,7 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, isLoading } = useAuthStore();
+  const { login, isFetching } = useAuthStore();
 
   const handleLogin = async (e) => {
     e.preventDefault(); 
@@ -69,8 +69,8 @@ const LoginPage = () => {
                 </div>
 
                 <div className="card-actions justify-center mb-3">
-                  <button type="submit" className="btn btn-primary w-full bg-blue-600/90 " disabled={isLoading}>
-                    {isLoading ? "Logging in..." : "Login"}
+                  <button type="submit" className="btn btn-primary w-full bg-blue-600/90 " disabled={isFetching}>
+                    {isFetching ? "Logging in..." : "Login"}
                   </button>
 
                 </div>

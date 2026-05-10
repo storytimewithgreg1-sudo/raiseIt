@@ -9,7 +9,7 @@ const SignupPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { signup, isLoading} = useAuthStore();
+    const { signup, isFetching} = useAuthStore();
 
     const handleRegistration = async (e) => {
         e.preventDefault();
@@ -92,8 +92,8 @@ const SignupPage = () => {
                                 </div>
 
                                 <div className="card-actions justify-center mb-3">
-                                    <button type="submit" className="btn btn-primary w-full bg-blue-600/90 " disabled={isLoading}>
-                                        {isLoading ? "loading" : "Submit"}
+                                    <button type="submit" className="btn btn-primary w-full bg-blue-600/90 " disabled={isFetching}>
+                                        {isFetching ? "loading" : "Submit"}
                                     </button>
 
                                 </div>

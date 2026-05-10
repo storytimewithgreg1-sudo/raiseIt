@@ -5,13 +5,13 @@ import toast from "react-hot-toast";
 
 const useSuggestionStore = create((set) => ({
     suggestions: [],
-    isLoading: false,
+    isFetching: false,
 
     setSuggestions: (suggestions) => set({ suggestions }),
-    setIsLoading: (loading) => set({ isLoading: loading }),
+    setisFetching: (loading) => set({ isFetching: loading }),
 
     fetchSuggestions: async (classId) => {
-        set({ isLoading: true });
+        set({ isFetching: true });
         try {
             const res = await getClassroomSuggestionsService(classId);
             set({ suggestions: res });
@@ -20,12 +20,12 @@ const useSuggestionStore = create((set) => ({
             toast.error("Failed to fetch suggestions.");
             console.log("Unable to fetch suggestions, try again", error);
         } finally {
-            set({ isLoading: false });
+            set({ isFetching: false });
         }
     },
 
     createSuggestion: async (classId, data) => {
-        set({ isLoading: true });
+        set({ isFetching: true });
         try {
             const newSuggestion = await createSuggestionService(classId, data);
             set((state) => ({ suggestions: [...state.suggestions, newSuggestion] }));
@@ -34,12 +34,12 @@ const useSuggestionStore = create((set) => ({
             toast.error("Failed to create suggestion.");
             console.log("Unable to create suggestion, try again", error);
         } finally {
-            set({ isLoading: false });
+            set({ isFetching: false });
         }
     },
 
     deleteSuggestion: async (classId, suggestionId) => {
-        set({ isLoading: true });
+        set({ isFetching: true });
 
         try {
             const updatedSuggestions = await deleteSuggestionService(classId, suggestionId);
@@ -50,7 +50,7 @@ const useSuggestionStore = create((set) => ({
             toast.error("Failed to delete suggestion.");
             console.log("Unable to delete suggestion, try again", error);
         } finally {
-            set({ isLoading: false });
+            set({ isFetching: false });
         }
 
     },
