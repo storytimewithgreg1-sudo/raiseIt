@@ -109,3 +109,20 @@ export const joinClassroom = async (req,res) => {
     }
 }
 
+export const enterClassroom = async (req,res) => {
+    try {
+        const classId = req.params.classId;
+        const userId = req.user._id;
+
+        const classroom =  await Classroom.findById(classId);
+
+        if(!classroom.members.includes(userId)){
+            return res.status(400).json({message:"User is not a member of the classroom"})
+        }
+
+    } catch (error) {
+        console.log("Error in enterClassroom controller", error);
+        return res.status(500).json({message:"Internal server error"})
+    }
+}
+

@@ -1,4 +1,4 @@
-import {LogIn} from "lucide-react"
+import {LogIn, Trash} from "lucide-react"
 
 const Classroom = ({classroom}) => {
   return (
@@ -11,6 +11,7 @@ const Classroom = ({classroom}) => {
         <div className="card-actions flex justify-between items-center">
           <LogIn className="text-purple-900"/>
           <button className="btn bg-purple-500 text-white hover:bg-purple-600 hover:text-white hover:border-none">Join Classroom</button>
+          <Trash className="text-red-500"/>
         </div>
       </div>
     </div>

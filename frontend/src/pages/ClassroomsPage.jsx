@@ -11,7 +11,7 @@ const ClassroomsPage = () => {
   return (
     <div className=" min-h-screen w-full items-center px-5 py-3 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
       <div className=" max-w-3xl md:max-w-5xl lg:max-w-7xl mx-auto">
-        <div className="flex justify-between p-5 items-center mb-10">
+        <div className="flex justify-between p-5 border-b border-white/30 items-center mb-10">
           <span className="text-white">Raise<span className="text-purple-400">It</span></span>
           <Link to='/create'>
             <button className="btn border-purple-600/50 text-sm hover:border-none bg-linear-to-r from-blue-600 to-purple-600 text-white">Create Classroom</button>
