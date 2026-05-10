@@ -5,6 +5,7 @@ import ClassroomsPage from "./pages/ClassroomsPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
+import CreateClassroomPage from "./pages/CreateClassroomPage.jsx";
 
 const App = () => {
   const {authUser, checkAuth} = useAuthStore();
@@ -28,6 +29,7 @@ const App = () => {
         /* Protected Routes */
 
         <Route path="/" element={ authUser ? <ClassroomsPage/> : <Navigate to="/login"/>}/>
+        <Route path="/create" element={ authUser ? <CreateClassroomPage/> : <Navigate to="/login"/>}/>
       </Routes>
     </div>
   )
