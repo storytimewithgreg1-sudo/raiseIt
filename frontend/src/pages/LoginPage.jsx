@@ -26,7 +26,7 @@ const LoginPage = () => {
     <div className="min-h-screen w-full items-center px-5  [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
     
       <div className=" flex items-center justify-center mx-auto  h-screen container px-4 py-8">
-        <div className="shadow-lg  px-2 md:px-4 py-2 md:py-6 max-w-3xl w-80 md:w-100 mx-auto card bg-blue-200">
+        <div className="shadow-lg  px-2 md:px-4 py-2 md:py-5 max-w-3xl w-80 md:w-100 mx-auto card bg-blue-200">
           <div className="card-body">
             <div className="mx-auto w-full flex flex-col items-center gap-6 ">
 
