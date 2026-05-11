@@ -15,7 +15,8 @@ const app = express();
 app.use(cors({
       origin: ["http://localhost:5173",
     "https://raise-it-livid.vercel.app",
-    "https://raiseit.gregrepo.com"],
+    "https://raiseit.gregrepo.com",
+      "https://raise-rbv0yaskq-storytimewithgreg1-sudos-projects.vercel.app"],
       credentials: true
 }));
 
