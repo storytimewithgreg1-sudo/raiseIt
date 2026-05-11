@@ -13,7 +13,9 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(cors({
-      origin: "http://localhost:5173",
+      origin: ["http://localhost:5173",
+    "https://raise-it-livid.vercel.app",
+    "https://raiseit.gregrepo.com"],
       credentials: true
 }));
 
