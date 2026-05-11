@@ -1,14 +1,21 @@
 import {Pin, PinOff , Heart} from 'lucide-react'
 
+
 const SuggestionCard = ({suggestion}) => {
-  return (
-    <div className="card shadow-xl w-96 md:w-80 h-40 flex flex-col items-center justify-center bg-sky-500">
+   
+  
+    return (
+    <div className="card shadow-xl w-90 md:w-80 h-40 flex flex-col items-center justify-center bg-linear-to-r from-blue-400 to-purple-400">
         <div className="card-body w-full">
-            <h3 className="card-title  text-sky-800">{suggestion.title}</h3>
-            <p className='text-sky-800/80'>{suggestion.content}</p>
+            <h3 className="card-title  text-teal-100">{suggestion.title}</h3>
+            <p className='text-teal-100/80'>{suggestion.content}</p>
 
             <div className="card-actions items-center justify-between">
+               <div className='bg-slate-100 p-2 rounded-full hover:bg-slate-200 btn border-none'>
                 {suggestion.isPinned ?  <Pin className='text-sky-800 size-5 ' /> : <PinOff className='text-sky-800 size-5' />}
+                </div>
+
+
                 <div className='relative '>
                     <div className='bg-blue-600/80  rounded-full p-2 btn border-none hover:bg-blue-600/60  '>
                         <Heart  className='size-5 text-white '/>
