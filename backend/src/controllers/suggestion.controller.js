@@ -56,9 +56,9 @@ export const deleteSuggestion = async (req,res) => {
         await Suggestion.findByIdAndDelete(suggestionId);
 
         const classId = req.params.classId;
-        const updatedSuggestions = await Suggestion.find({classroom: classId});
+       
 
-        res.status(200).json(updatedSuggestions);
+        res.status(200).json({message: "Success"});
     
         
     } catch (error) {
@@ -76,11 +76,11 @@ export const voteOnSuggestion = async (req,res) => {
         if (suggestion.votes.includes(userId)){
             suggestion.votes.pull(userId);
             await suggestion.save();
-            res.status(200).json({voteCount: suggestion.votes.length});
+            res.status(200).json({votes: suggestion.votes});
         }else{
             suggestion.votes.push(userId);
             await suggestion.save();
-            res.status(200).json({voteCount: suggestion.votes.length});
+            res.status(200).json({votes: suggestion.votes});
         }
 
         

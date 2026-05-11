@@ -1,6 +1,6 @@
 import { Plus, ArrowLeft} from "lucide-react";
 import { useState } from "react"
-import toast from "react-hot-toast";
+
 import { useNavigate } from "react-router";
 import useSuggestionStore from "../store/suggestions.store";
 import {useParams} from 'react-router'

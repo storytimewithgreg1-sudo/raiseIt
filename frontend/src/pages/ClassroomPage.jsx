@@ -12,7 +12,10 @@ const ClassroomPage = () => {
 
   const classroom = classrooms.find((c) => c._id === classId);
 
+  if(!classroom) return <div className="min-h-screen bg-linear-to-br from-slate-950 to-blue-950 p-1">
 
+    <span className="text-white">Loading..</span>
+  </div>
 
   return (
 

@@ -48,12 +48,16 @@ const useSuggestionStore = create((set) => ({
         set({ isFetching: true });
 
         try {
-            const updatedSuggestions = await deleteSuggestionService(classId, suggestionId);
-            set({ suggestions: updatedSuggestions });
+            await deleteSuggestionService(classId, suggestionId);
+            const {classrooms, setClassrooms} = useClassroomStore.getState();
+            const updated =classrooms.map((room) => room._id === classId ? {...room, suggestions: room.suggestions.filter((s) => s._id !== suggestionId) } : room)
+            setClassrooms(updated);
+            
             toast.success("Suggestion deleted successfully");
 
         } catch (error) {
-            toast.error("Failed to delete suggestion.");
+            const errorMessage = error.response?.data?.message || "Failed to Delete"
+            toast.error(errorMessage);
             console.log("Unable to delete suggestion, try again", error);
         } finally {
             set({ isFetching: false });
@@ -61,12 +65,18 @@ const useSuggestionStore = create((set) => ({
 
     },
 
-    voteOnSuggestion: async (suggestionId) => {
+    voteOnSuggestion: async (classId, suggestionId) => {
         try {
-            const voteCount = await voteOnSuggestionService(suggestionId);
-            set((state) => ({
-                suggestions: state.suggestions.map((sug) => sug._id === suggestionId ? { ...sug, votes: voteCount } : sug)
-            }))
+            const data = await voteOnSuggestionService(suggestionId, classId);
+            console.log("data from backend,", data);
+            const {votes} = data;
+
+            console.log("votes," ,votes)
+            const {classrooms, setClassrooms} = useClassroomStore.getState();
+            const updated = classrooms.map((room)=> room._id === classId ? {...room, suggestions: room.suggestions.map((sug) => sug._id === suggestionId ? {...sug, votes : votes } : sug)}  : room)
+            setClassrooms(updated);
+
+            
         } catch (error) {
             toast.error("Failed to vote on suggestion.");
             console.log("Unable to vote on suggestion, try again", error);
@@ -76,12 +86,14 @@ const useSuggestionStore = create((set) => ({
     pinSuggestion: async (classId, suggestionId) => {
         try {
 
-            const pinnedSuggestion = await pinSuggestionService(classId, suggestionId);
-            set((state) => ({
-                suggestions: state.suggestions.map((sug) => sug._id === suggestionId ? { ...sug, isPinned: pinnedSuggestion.isPinned } : sug)
-            }))
+            await pinSuggestionService(classId, suggestionId);
+            const {classrooms, setClassrooms} = useClassroomStore.getState();
+            const updated = classrooms.map((room) => room._id === classId ?{...room, suggestions: room.suggestions.map((s) => s._id === suggestionId ? {...s, isPinned : !s.isPinned} : s)} : room);
+            setClassrooms(updated)
+           
         } catch (error) {
-            toast.error("Failed to pin suggestion.");
+            const errorMessage = error.response?.data?.message || "Failed to Pin"
+            toast.error(errorMessage);
             console.log("Unable to pin suggestion, try again", error);
         }
     },

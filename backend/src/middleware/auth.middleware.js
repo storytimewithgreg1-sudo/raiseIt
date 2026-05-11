@@ -101,7 +101,7 @@ export const isCreatorOrAuthor = async (req, res, next) => {
     try {
 
         const userId = req.user._id;
-        const isAuthor = await Suggestion.findOne({ author: userId });
+        const isAuthor = await Suggestion.findOne({ author: userId, _id: req.params.suggestionId  });
 
 
         const isCreator = await Classroom.findOne({ createdBy: userId, _id: req.params.classId });
