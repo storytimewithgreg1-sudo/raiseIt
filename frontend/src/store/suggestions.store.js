@@ -6,9 +6,11 @@ import toast from "react-hot-toast";
 const useSuggestionStore = create((set) => ({
     suggestions: [],
     isFetching: false,
+    isLoading: false,
 
     setSuggestions: (suggestions) => set({ suggestions }),
     setisFetching: (loading) => set({ isFetching: loading }),
+    setIsLoading: (loading) => set({isLoading:loading}),
 
     fetchSuggestions: async (classId) => {
         set({ isFetching: true });
@@ -25,7 +27,7 @@ const useSuggestionStore = create((set) => ({
     },
 
     createSuggestion: async (classId, data) => {
-        set({ isFetching: true });
+        set({ isLoading: true });
         try {
             const newSuggestion = await createSuggestionService(classId, data);
             set((state) => ({ suggestions: [...state.suggestions, newSuggestion] }));
@@ -34,7 +36,7 @@ const useSuggestionStore = create((set) => ({
             toast.error("Failed to create suggestion.");
             console.log("Unable to create suggestion, try again", error);
         } finally {
-            set({ isFetching: false });
+            set({ isLoading: false });
         }
     },
 

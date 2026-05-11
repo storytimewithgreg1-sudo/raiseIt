@@ -25,7 +25,7 @@ const ClassroomPage = () => {
             <button onClick={ () => navigate('/')} className="btn border-none bg-linear-to-r from-purple-400 to-blue-400 ">
               <ArrowLeft />
             </button>
-            <button onClick={() => navigate('/:classId/suggestion')} className="btn border-none bg-linear-to-r from-purple-400 to-blue-400">
+            <button onClick={() => navigate(`/${classId}/suggestion`)} className="btn border-none bg-linear-to-r from-purple-400 to-blue-400">
               <Plus />
             </button>
 
