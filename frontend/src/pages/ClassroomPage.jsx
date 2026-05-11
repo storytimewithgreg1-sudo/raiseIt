@@ -25,11 +25,11 @@ const ClassroomPage = () => {
 
         <div className="flex flex-col items-center justify-center mt-20 ">
           <div className="w-full border border-white/40 mb-5 p-4 rounded-xl shadow-2xl flex justify-between items-center">
-            <button onClick={ () => navigate('/')} className="btn border-none bg-linear-to-r from-purple-400 to-blue-400 ">
+            <button onClick={ () => navigate('/')} className="btn btn-xs md:btn-md border-none bg-linear-to-r from-purple-400 to-blue-400 ">
               <ArrowLeft />
             </button>
-            <span className="text-xl font-bold text-white/80">{classroom.name}</span>
-            <button onClick={() => navigate(`/${classId}/suggestion`)} className="btn border-none bg-linear-to-r from-purple-400 to-blue-400">
+            <span className="text-md  lg:text-xl font:md md:font-bold text-white/80">{classroom.name}</span>
+            <button onClick={() => navigate(`/${classId}/suggestion`)} className="btn btn-xs md:btn-md  border-none bg-linear-to-r from-purple-400 to-blue-400">
               <Plus />
             </button>
 

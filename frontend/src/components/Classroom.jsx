@@ -35,24 +35,24 @@ const Classroom = ({classroom}) => {
     {toggleModal && <JoinModal setToggleModal={setToggleModal} classId={classroom._id}/>}
 
 
-    <div className="card  shadow-lg w-96 md:w-80 bg-linear-to-r from-cyan-300 to-blue-200">
+    <div className="card  shadow-lg w-60 md:w-80 bg-linear-to-r from-cyan-300 to-blue-200">
       <div className="card-body">
         
-        <h5 className="card-title text-blue-800">{classroom.name}</h5>
-        <p className="card-text text-blue-800/80 mb-6">{classroom.description}</p>
+        <h5 className="card-title text-sm md:text-lg  text-blue-800">{classroom.name}</h5>
+        <p className="card-text text-blue-800/80 mb-6 text-xs md:sm">{classroom.description}</p>
 
         <div className="card-actions flex justify-between items-center">
-          <LogIn onClick={() => handleEnterClassroom(classroom._id)} className="text-purple-900"/>
+          <LogIn onClick={() => handleEnterClassroom(classroom._id)} className="text-purple-900 size-5"/>
           <button onClick={() => { setToggleModal((prev) => !prev) }
          
         
         
-        } className="btn bg-linear-to-r from-blue-400 to-blue-600 text-white hover:bg-purple-600 hover:text-white hover:border-none">Join Classroom</button>
+        } className="btn btn-sm md:btn-md bg-linear-to-r from-blue-400 to-blue-600 text-white hover:bg-purple-600 hover:text-white hover:border-none">Join Classroom</button>
           
           
           <Trash onClick={() => {if (!isDeleting) { handleDeleteClassroom(classroom._id)}} } 
           
-                          className={classToBeDeleted ? "animate-spin text-red-500" : "text-red-500"}/>
+                          className={classToBeDeleted ? "animate-spin text-red-500 size-5" : "text-red-500 size-5"}/>
         </div>
       </div>
     </div>
