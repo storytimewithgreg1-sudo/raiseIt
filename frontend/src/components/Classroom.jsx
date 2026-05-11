@@ -35,7 +35,7 @@ const Classroom = ({classroom}) => {
     {toggleModal && <JoinModal setToggleModal={setToggleModal} classId={classroom._id}/>}
 
 
-    <div className="card  shadow-lg w-60 md:w-80 bg-linear-to-r from-cyan-300 to-blue-200">
+    <div className="card  shadow-lg w-60 md:w-70 bg-linear-to-r from-cyan-300 to-blue-200">
       <div className="card-body">
         
         <h5 className="card-title text-sm md:text-lg  text-blue-800">{classroom.name}</h5>

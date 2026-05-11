@@ -23,7 +23,7 @@ const ClassroomPage = () => {
       <div className=" max-w-3xl md:max-w-5xl lg:max-w-7xl mx-auto">
 
 
-        <div className="flex flex-col items-center justify-center mt-20 ">
+        <div className="flex flex-col items-center justify-center mt-10 ">
           <div className="w-full border border-white/40 mb-5 p-4 rounded-xl shadow-2xl flex justify-between items-center">
             <button onClick={ () => navigate('/')} className="btn btn-xs md:btn-md border-none bg-linear-to-r from-purple-400 to-blue-400 ">
               <ArrowLeft />
