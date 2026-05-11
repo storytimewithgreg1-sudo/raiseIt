@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { createSuggestionService, deleteSuggestionService, getClassroomSuggestionsService, pinSuggestionService, voteOnSuggestionService } from "../services/suggestion.services.js";
 import toast from "react-hot-toast";
+import useClassroomStore from "./classroom.store.js";
 
 
 const useSuggestionStore = create((set) => ({
@@ -31,6 +32,9 @@ const useSuggestionStore = create((set) => ({
         try {
             const newSuggestion = await createSuggestionService(classId, data);
             set((state) => ({ suggestions: [...state.suggestions, newSuggestion] }));
+            const {classrooms, setClassrooms} = useClassroomStore.getState();
+            const updated = classrooms.map((c) => c._id === classId ? {...c, suggestions: [...c.suggestions, newSuggestion]} : c)
+            setClassrooms(updated);
             toast.success("Suggestion created successfully");
         } catch (error) {
             toast.error("Failed to create suggestion.");

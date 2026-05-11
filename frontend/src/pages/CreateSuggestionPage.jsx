@@ -26,7 +26,7 @@ const CreateSuggestion = () => {
 
       <div className=" min-h-screen flex flex-col  max-w-3xl md:max-w-5xl lg:max-w-7xl mx-auto">
         <div className=" w-full p-4 mt-10 border-b border-white/30">
-          <button onClick={() => navigate('/')} className="btn border-none bg-linear-to-r from-blue-400 to-blue-600 ">
+          <button onClick={() => navigate(`/${classId}`)} className="btn border-none bg-linear-to-r from-blue-400 to-blue-600 ">
             <ArrowLeft />
           </button>
         </div>
