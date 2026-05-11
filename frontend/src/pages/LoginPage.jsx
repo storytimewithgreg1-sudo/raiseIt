@@ -26,44 +26,44 @@ const LoginPage = () => {
     <div className="min-h-screen w-full items-center px-5  [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]">
     
       <div className=" flex items-center justify-center mx-auto  h-screen container px-4 py-8">
-        <div className="shadow-lg  px-4 py-8 max-w-3xl w-full mx-auto card bg-blue-200">
+        <div className="shadow-lg  px-2 md:px-4 py-2 md:py-6 max-w-3xl w-80 md:w-100 mx-auto card bg-blue-200">
           <div className="card-body">
             <div className="mx-auto w-full flex flex-col items-center gap-6 ">
 
             <div className=" text-blue-950 flex flex-col items-center gap-4">
                 <UserRound strokeWidth={1} size={70} className="bg-blue-300 rounded-full"/>
-              <h1 className="font-medium text-2xl md:text-3xl text-blue-950">Welcome Back</h1>
+              <h1 className="font-medium text-xl md:text-3xl text-blue-950">Welcome Back</h1>
             </div>
 
               <form onSubmit={handleLogin} className=" w-full max-w-md">
                
 
-                <div className="form-control flex flex-col gap-2 mb-4">
+                <div className="form-control flex flex-col gap-2mb-2 md:mb-4">
                   
                   <label className="text-lg text-blue-950/80" >
                   
-                    <span>Email</span>
+                    <span className="text-sm md:text-md">Email</span>
                   </label>
                   
                   <input type="text"
                     value={email}
-                    className="input input-bordered border-blue-800/20 bg-transparent w-full"
+                    className="input placeholder:text-xs md:placeholder:text-sm input-bordered border-blue-800/20 bg-transparent w-full"
                     placeholder="Please Enter Your Email"
                     onChange={(e) => setEmail(e.target.value)} />
                 </div>
 
                  
                  
-                 <div className="form-control flex flex-col gap-2 mb-4">
+                 <div className="form-control flex flex-col gap-2 mb-2 md:mb-4">
                   
                   <label className="text-lg text-blue-950/80" >
                   
-                    <span>Password</span>
+                    <span className="text-sm md:text-md">Password</span>
                   </label>
                   
                   <input type="password"
                     value={password}
-                    className="input input-bordered border-blue-800/20 bg-transparent w-full"
+                    className="input  placeholder:text-xs md:placeholder:text-sm input-bordered border-blue-800/20 bg-transparent w-full"
                     placeholder="Please Enter Your Password"
                     onChange={(e) => setPassword(e.target.value)} />
                 </div>
@@ -75,7 +75,7 @@ const LoginPage = () => {
 
                 </div>
 
-                <span className="mt-3 text-blue-950/80">
+                <span className="mt-3 text-xs md:text-sm text-blue-950/80">
                    Don't have an account? 
                    <Link to="/signup" > Signup</Link>
                    </span>
