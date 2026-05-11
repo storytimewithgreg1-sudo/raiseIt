@@ -32,7 +32,7 @@ const CreateClassroomPage = () => {
     <div className="min-h-screen bg-linear-to-br from-slate-950 to-blue-950 p-1">
 
       <div className=" min-h-screen flex flex-col  max-w-3xl md:max-w-5xl lg:max-w-7xl mx-auto">
-        <div className=" w-full p-4 mt-10 border-b border-white/30">
+        <div className=" w-full p-4 mt-2 md:mt-4 border-b border-white/30">
           <button onClick={() => navigate('/')} className="btn btn-sm md:btn-md border-none bg-linear-to-r from-blue-400 to-blue-600 ">
             <ArrowLeft />
           </button>
