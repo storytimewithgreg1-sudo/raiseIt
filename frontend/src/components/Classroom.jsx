@@ -47,7 +47,7 @@ const Classroom = ({classroom}) => {
          
         
         
-        } className="btn bg-purple-500 text-white hover:bg-purple-600 hover:text-white hover:border-none">Join Classroom</button>
+        } className="btn bg-linear-to-r from-blue-400 to-blue-600 text-white hover:bg-purple-600 hover:text-white hover:border-none">Join Classroom</button>
           
           
           <Trash onClick={() => {if (!isDeleting) { handleDeleteClassroom(classroom._id)}} } 

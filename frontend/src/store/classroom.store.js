@@ -36,18 +36,20 @@ const useClassroomStore = create((set) => ({
     },
 
     createClassroom: async (data) => {
-        set({ isFetching: true });
+        set({ isLoading: true });
 
         try {
             const newClassroom = await createClassroomService(data);
             set((state) => ({ classrooms: [...state.classrooms, newClassroom] }));
             toast.success("Classroom created successfully");
+            return true
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Create failed. Please check your details and try again.";
             toast.error(errorMessage);
             console.log(errorMessage);
+            return false;
         } finally {
-            set({ isFetching: false });
+            set({ isLoading: false });
         }
     },
 
