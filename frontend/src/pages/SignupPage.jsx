@@ -44,7 +44,7 @@ const SignupPage = () => {
 
                             <div className=" text-blue-950 flex flex-col items-center gap-4">
                                 <UserRound strokeWidth={1} size={70} className="bg-blue-300 rounded-full" />
-                                <h1 className="font-medium text-xl md:text-3xl text-blue-950">Welcome Back</h1>
+                                <h1 className="font-medium text-xl md:text-3xl text-blue-950">Register</h1>
                             </div>
 
                             <form onSubmit={handleRegistration} className=" w-full max-w-md">
