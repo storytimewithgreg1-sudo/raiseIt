@@ -71,7 +71,7 @@ const useAuthStore = create((set) => ({
             set({ authUser: res.data })
         } catch (error) {
             const errorMessage = error.response?.data?.message || "CheckAuth failed. Please check your details and try again.";
-            toast.error(errorMessage);
+           console.log(errorMessage)
 
 
         } finally {
