@@ -54,7 +54,7 @@ export const login = async (req, res) => {
             return res.status(400).json({ message: "All Fields Required" })
         }
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email: email.toLoweCase() });
 
         if (!user) {
             return res.status(400).json({ message: "Invalid Credentials" })
