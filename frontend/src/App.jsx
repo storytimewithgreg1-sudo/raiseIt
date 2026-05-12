@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import CreateClassroomPage from "./pages/CreateClassroomPage.jsx";
 import ClassroomPage from "./pages/ClassroomPage.jsx";
 import CreateSuggestion from "./pages/CreateSuggestionPage.jsx";
+import LandingPage from "./pages/LandingPage.jsx";
 
 
 const App = () => {
@@ -24,17 +25,17 @@ const App = () => {
       <Routes>
         
         /* Public Routes */
-        
-        <Route path="/login" element= {authUser ? <Navigate to="/"/> : <LoginPage />} />
-        <Route path="/signup" element= {authUser ? <Navigate to="/"/> : <SignupPage />} />
+        <Route path="/" element={ authUser ? <Navigate to="/dashboard"/>  : <LandingPage/>}/>
+        <Route path="/login" element= {authUser ? <Navigate to="/dashboard"/> : <LoginPage />} />
+        <Route path="/signup" element= {authUser ? <Navigate to="/dashboard"/> : <SignupPage />} />
 
 
         /* Protected Routes */
 
-        <Route path="/" element={ authUser ? <ClassroomsPage/> : <Navigate to="/login"/>}/>
-        <Route path="/create" element={ authUser ? <CreateClassroomPage/> : <Navigate to="/login"/>}/>
-        <Route path="/:classId" element={ authUser ? <ClassroomPage/> : <Navigate to="/login"/>}/>
-        <Route path="/:classId/suggestion" element={ authUser ? <CreateSuggestion/> : <Navigate to="/login"/>}/>
+        <Route path="/dashboard" element={ authUser ? <ClassroomsPage/> : <Navigate to="/"/>}/>
+        <Route path="/create" element={ authUser ? <CreateClassroomPage/> : <Navigate to="/"/>}/>
+        <Route path="/:classId" element={ authUser ? <ClassroomPage/> : <Navigate to="/"/>}/>
+        <Route path="/:classId/suggestion" element={ authUser ? <CreateSuggestion/> : <Navigate to="/"/>}/>
       </Routes>
     </div>
   )
