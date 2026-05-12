@@ -10,7 +10,7 @@ const LandingPage = () => {
             <div className=" flex flex-col max-w-3xl md:max-w-4xl lg:max-w-5xl  mx-auto w-full min-h-screen ">
                 <div className="flex justify-around md:justify-between p-4 border-b border-blue-950/20">
                     <div className="flex items-center justify-center">
-                        <span className="text-black text-xs md:text-lg cursor-pointer">Raise<span className="text-purple-800">It</span></span>
+                        <span className="text-black text-xs md:text-lg cursor-pointer">Raise<span className="text-blue-800">It</span></span>
                         <img src="/RaiseIt.svg" className="size-5" alt="RaiseIt Logo" />
                     </div>
                     <div>
