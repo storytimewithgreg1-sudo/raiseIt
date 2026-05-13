@@ -102,7 +102,7 @@ const SignupPage = () => {
                                 </div>
 
                                 <span className="mt-3 text-xs md:text-sm text-blue-950/80">
-                                    Don't have an account?
+                                    Already have an account?
                                     <Link to="/login" > Login</Link>
 
                                 </span>
