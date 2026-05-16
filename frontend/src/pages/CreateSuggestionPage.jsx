@@ -41,7 +41,7 @@ const CreateSuggestion = () => {
                   <label className="text-white/80"> Title</label>
                   <input className="w-full input input-bordered bg-transparent text-white/60 border-sky-300 placeholder:text-white/40 focus:outline-none focus:border-white/90"
                     type="text"
-                    placeholder="Enter your preferred room name"
+                    placeholder="Enter the title of your suggestion"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
