@@ -14,7 +14,7 @@ const Classroom = ({ classroom }) => {
 
 
   const handleEnterClassroom = async (classId) => {
-    console.log("clicked", classId)
+    
     const success = await enterClassroom(classId);
     if (success) {
       navigate(`/${classId}`);
