@@ -25,7 +25,7 @@ const SuggestionCard = ({suggestion}) => {
    } 
   
     return (
-    <div className={ voteNumber > 10 ? "card  shadow-xl min-h-64 w-70 md:w-80 flex flex-col  bg-linear-to-r from-green-400 to-green-600 overflow-hidden" : "card min-h-64  shadow-xl w-70 md:w-80 flex flex-col bg-linear-to-r from-blue-400 to-purple-400 overflow-hidden"}>
+    <div className={ voteNumber >= 10 ? "card  shadow-xl min-h-64 w-70 md:w-80 flex flex-col  bg-linear-to-r from-green-400 to-green-600 overflow-hidden" : "card min-h-64  shadow-xl w-70 md:w-80 flex flex-col bg-linear-to-r from-blue-400 to-purple-400 overflow-hidden"}>
         <div className="p-6 flex flex-col h-full w-full">
             <button onClick={handleSuggestionDelete} className='btn btn-xs btn-ghost text-white/60 hover:text-white hover:bg-transparent border-none self-end '>
                 <X className='size-5 '/>
