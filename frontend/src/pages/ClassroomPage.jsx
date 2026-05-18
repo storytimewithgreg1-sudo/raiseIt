@@ -12,7 +12,7 @@ const ClassroomPage = () => {
 
   const classroom = classrooms.find((c) => c._id === classId);
 
-  if(!classroom) return <div className="min-h-screen bg-linear-to-br from-slate-950 to-blue-950 p-1">
+  if (!classroom) return <div className="min-h-screen bg-linear-to-br from-slate-950 to-blue-950 p-1">
 
     <span className="text-white">Loading..</span>
   </div>
@@ -25,10 +25,20 @@ const ClassroomPage = () => {
 
         <div className="flex flex-col items-center justify-center mt-10 ">
           <div className="w-full border border-white/40 mb-5 p-4 rounded-xl shadow-2xl flex justify-between items-center">
-            <button onClick={ () => navigate('/')} className="btn btn-xs md:btn-md border-none bg-linear-to-r from-purple-400 to-blue-400 ">
+            <button onClick={() => navigate('/')} className="btn btn-xs md:btn-md border-none bg-linear-to-r from-purple-400 to-blue-400 ">
               <ArrowLeft />
             </button>
-            <span className="text-md  lg:text-xl font:md md:font-bold text-white/80">{classroom.name}</span>
+            <div className="">
+              <div className="flex flex-col items-center justify-center">
+                <span className="text-md  lg:text-xl font:md md:font-bold text-white/80">{classroom.name}</span>
+                <div className="mt-1 flex gap-2 items-center justify-center">
+                  <span className="text-xs text-green-600">{`Members: ${classroom.members.length}`}</span>
+                  <div className="size-2 bg-green-600 rounded-full"></div>
+                </div>
+              </div>
+
+
+            </div>
             <button onClick={() => navigate(`/${classId}/suggestion`)} className="btn btn-xs md:btn-md  border-none bg-linear-to-r from-purple-400 to-blue-400">
               <Plus />
             </button>
