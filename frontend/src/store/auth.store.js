@@ -20,7 +20,7 @@ const useAuthStore = create((set) => ({
 
             toast.success(`Welcome Back, ${res.data.name}`);
             set({ authUser: res.data })
-            console.log("response:", res.data)
+           
 
 
         } catch (error) {
@@ -38,8 +38,7 @@ const useAuthStore = create((set) => ({
             console.log("Store recieved", data)
             const res = await signupService(data);
             toast.success(`Welcome ${res.data.name}`);
-            console.log(res.data)
-
+            
         } catch (error) {
             const errorMessage = error.response?.data?.message || "Signup failed. Please check your details and try again.";
             toast.error(errorMessage);
