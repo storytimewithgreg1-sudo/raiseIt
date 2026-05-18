@@ -75,12 +75,12 @@ export const voteOnSuggestion = async (req,res) => {
 
         if (suggestion.votes.includes(userId)){
             suggestion.votes.pull(userId);
-            suggestion.votes.length > 10 ? suggestion.expiresAt = null :  suggestion.expiresAt = Date.now() + 7*24*60*60*1000;
+            suggestion.votes.length >= 10 ? suggestion.expiresAt = null :  suggestion.expiresAt = Date.now() + 7*24*60*60*1000;
             await suggestion.save();
             res.status(200).json({votes: suggestion.votes});
         }else{
             suggestion.votes.push(userId);
-            suggestion.votes.length > 10 ? suggestion.expiresAt = null :  suggestion.expiresAt = Date.now() + 7*24*60*60*1000;
+            suggestion.votes.length >= 10 ? suggestion.expiresAt = null :  suggestion.expiresAt = Date.now() + 7*24*60*60*1000;
             await suggestion.save();
             res.status(200).json({votes: suggestion.votes});
         }
