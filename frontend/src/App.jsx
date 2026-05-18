@@ -15,7 +15,7 @@ const App = () => {
   const {authUser, checkAuth} = useAuthStore();
   useEffect(() => {checkAuth()}, [])
 
-  console.log(authUser)
+ 
 
 
 
