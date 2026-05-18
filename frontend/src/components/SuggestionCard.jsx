@@ -7,6 +7,7 @@ const SuggestionCard = ({suggestion}) => {
    const {deleteSuggestion, voteOnSuggestion, pinSuggestion} = useSuggestionStore();
    const {classId} = useParams();
    const suggestionId = suggestion._id;
+   const voteNumber = suggestion.votes.length;
 
    const handleSuggestionDelete = async (e) => {
     e.preventDefault();
@@ -24,7 +25,7 @@ const SuggestionCard = ({suggestion}) => {
    } 
   
     return (
-    <div className="card min-h-fit shadow-xl w-70 md:w-80 flex flex-col items-center justify-center bg-linear-to-r from-blue-400 to-purple-400 overflow-hidden">
+    <div className={ voteNumber > 10 ? "card min-h-fit shadow-xl w-70 md:w-80 flex flex-col items-center justify-center bg-linear-to-r from-green-400 to-green-600 overflow-hidden" : "card min-h-fit shadow-xl w-70 md:w-80 flex flex-col items-center justify-center bg-linear-to-r from-blue-400 to-purple-400 overflow-hidden"}>
         <div className="card-body w-full">
             <button onClick={handleSuggestionDelete} className='btn btn-xs btn-ghost text-white/60 hover:text-white hover:bg-transparent border-none self-end '>
                 <X className='size-5 '/>
