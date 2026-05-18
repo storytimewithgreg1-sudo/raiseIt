@@ -24,12 +24,12 @@ const useClassroomStore = create((set) => ({
         try {
             const classrooms = await getClassroomsService();
             set({ classrooms });
-            console.log("fetched classrooms", classrooms)
+           
 
         } catch (error) {
            const errorMessage = error.response?.data?.message || "Fetch Classrooms failed. Please check your details and try again.";
             toast.error(errorMessage);
-           console.log(errorMessage)
+          
         } finally {
             set({ isFetching: false })
         }
