@@ -48,11 +48,12 @@ const ClassroomPage = () => {
 
           </div>
           <div className="w-full  border rounded-2xl border-white/20 text-white/80  justify-center items-center gap-2 mb-4 p-4 border border-blue-500">
-           <div className="text-xs flex flex-col items-start gap-2  max-w-md  mx-auto">
-             <p>📍Pinned suggestions stay permanently</p>
-            <p>🟢 Suggestions with 10+ votes turn green</p>
-            <p>⏳ Unpinned suggestions disappear after 7 days</p>
-           </div>
+            <div className="text-xs flex flex-col items-start gap-2  max-w-md  mx-auto">
+              <p>📍Pinned suggestions stay permanently</p>
+              <p>📍Suggestions with 10+ votes stay permanently</p>
+              <p>🟢 Suggestions with 10+ votes turn green</p>
+              <p>⏳ Unpinned suggestions disappear after 7 days</p>
+            </div>
 
           </div>
           <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-10">
