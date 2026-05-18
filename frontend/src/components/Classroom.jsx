@@ -35,13 +35,13 @@ const Classroom = ({ classroom }) => {
       {toggleModal && <JoinModal setToggleModal={setToggleModal} classId={classroom._id} />}
 
 
-      <div className="card  shadow-lg w-60 md:w-70 bg-linear-to-r from-cyan-300 to-blue-200">
+      <div className="card  shadow-lg w-65 md:w-70 bg-linear-to-r from-cyan-300 to-blue-200">
         <div className="card-body">
 
           <h5 className="card-title text-sm md:text-lg  text-blue-800">{classroom.name}</h5>
           <p className="card-text text-blue-800/80 mb-6 text-xs md:sm">{classroom.description}</p>
 
-          <div className="card-actions flex justify-between items-center">
+          <div className="card-actions flex justify-around items-center">
             <button onClick={() => handleEnterClassroom(classroom._id)} className="btn btn-xs bg-transparent border-2 border-blue-700 text-blue-700 " >
               
               Enter
@@ -52,7 +52,7 @@ const Classroom = ({ classroom }) => {
 
 
 
-            } className="btn btn-xs  bg-linear-to-r from-blue-400 to-blue-600 text-white hover:bg-purple-600 hover:text-white hover:border-none">Join Classroom
+            } className="btn btn-xs  bg-linear-to-r from-blue-400 to-blue-600 text-white hover:bg-purple-600 hover:text-white hover:border-none">Join Room
 
             </button>
 
